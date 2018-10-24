@@ -127,13 +127,6 @@ function doSomething () {
         break;
       case "movie-this":
         movies(query);
-        break;
-      case "do-what-it-says":
-        doSomething();
-        break;
-      default:
-        console.log("The commands available are concert-this, spotify-this-song, movie-this and do-what-it-says ")
-    
     }
   });
 
