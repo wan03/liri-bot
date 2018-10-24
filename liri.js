@@ -1,5 +1,4 @@
 const fs = require("fs");
-const inquirer = require("inquirer");
 const moment = require("moment");
 const dotenv = require("dotenv").config();
 const Spotify = require("node-spotify-api");
@@ -12,22 +11,23 @@ var spotify = new Spotify(keys.spotify);
 var artist = "",
     movie = "",
     song = "",
-    action = process.argv[2];
+    action = process.argv[2],
+    query = process.argv.slice(3).join(" ");
 
 
 
 switch (action) {
   case "concert-this":
-   concert();
+   concert(query);
     break;
   case "spotify-this-song":
-  spotifySearch();
+  spotifySearch(query);
     break;
   case "movie-this":
-    movies();
+    movies(query);
     break;
   case "do-what-it-says":
-    // TODO: Complete this with a function / call to action;
+    doSomething();
     break;
   default:
     console.log("The commands available are concert-this, spotify-this-song, movie-this and do-what-it-says ")
@@ -35,32 +35,31 @@ switch (action) {
 }
 
 
-function concert() {
+function concert(query) {
   
-  artist = process.argv.slice(3).join(" ");
-  console.log(artist)
+  
 
-request("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp", function(err, response, data){
-  if(data == []){
+request("https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp", function(err, response, data){  
+  if(data === []){
     console.log("Sorry, we couldn't find that artist.")
   } else{
-
-  console.log(JSON.parse(data)[0].venue.name);
-  console.log(JSON.parse(data)[0].venue.city + ", " +JSON.parse(data)[0].venue.region);
+    // console.log(JSON.parse(data))
+  console.log(artist + " is going to be playing in " + JSON.parse(data)[0].venue.name);
+  console.log("This venue is located in " + JSON.parse(data)[0].venue.city + ", " +JSON.parse(data)[0].venue.region);
   var unformattedTime =  JSON.parse(data)[0].datetime;
   var time = moment(unformattedTime).format("MMMM Do YYYY, h:mm:ss a");
-  console.log(time);
+  console.log("The concert will start on " + time);
   }
 })
 }
 
 
-function movies(){
+function movies(query){
   movie = process.argv.slice(3).join(" ");
-  console.log(movie)
-  request("http://www.omdbapi.com/?apikey=418b7fe2&t=" + movie, function(err, response, data) {
+  console.log(query)
+  request("http://www.omdbapi.com/?apikey=418b7fe2&t=" + query, function(err, response, data) {
 
-    if (movie != "") {     
+    if (query != "") {     
       
       console.log("The movie's title is: " + JSON.parse(data).Title);
       console.log("The movie was realeased in the year: " + JSON.parse(data).Year);
@@ -90,11 +89,11 @@ function movies(){
 });
 }
 
-function spotifySearch () {
-  song = process.argv.slice(3).join(" ");
+function spotifySearch (query) {
+  if (!query) query = "Por mi reggae muero";
 
   spotify
-  .search({ type: 'track', query: song })
+  .search({ type: 'track', query: query })
   .then(function(response) {
     console.log(response.tracks.items[0].artists[0].name);
     console.log(response.tracks.items[0].name);
@@ -108,20 +107,38 @@ function spotifySearch () {
 }
   
 function doSomething () {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+
+    
+    if (error) {
+      return console.log(error);
+    }
+  
+    var dataArr = data.split(",");
+    action = dataArr[0];
+    query = dataArr[1];
+
+    switch (action) {
+      case "concert-this":
+       concert(query);
+        break;
+      case "spotify-this-song":
+      spotifySearch(query);
+        break;
+      case "movie-this":
+        movies(query);
+        break;
+      case "do-what-it-says":
+        doSomething();
+        break;
+      default:
+        console.log("The commands available are concert-this, spotify-this-song, movie-this and do-what-it-says ")
+    
+    }
+  });
 
 }
 
 
 
 
-// inquirer
-// .prompt([
-//   {
-//     type: "list",
-//     message: "What do you want to do today?",
-//     choices: ["Spotify", "Bands In Town", "OMDB"],
-//     name: "command"
-//   }
-
-
-// ])
