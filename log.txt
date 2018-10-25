@@ -1,0 +1,34 @@
+Movie 
+ 
+The movie's title is: The Matrix
+The movie was realeased in the year: 
+1999
+The movie's rating is: 
+8.7
+The movie's Rotten Tomato Score is: 
+87%
+The movie was shot in: 
+USA
+The movie's language is: 
+English
+The movie's plot is: 
+A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
+The actors in this movie are: 
+Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
+------------------------------------------------------------
+
+Concert 
+ 
+Marc Anthony is going to be playing in Agganis Arena
+This venue is located in Boston, MA
+The concert will start on October 25th 2018, 8:00:00 pm
+------------------------------------------------------------
+
+Song 
+ 
+The artists name is: blink-182
+The songs name is: All The Small Things
+The URL to the song is: https://open.spotify.com/track/7yCPwWs66K8Ba5lFuU2bcx
+The URL to the album is: https://open.spotify.com/album/5qt11cWjSs5Gbqj2Wyfu38
+------------------------------------------------------------
+

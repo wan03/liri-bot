@@ -8,13 +8,10 @@ const keys = require("./keys.js")
 
 var spotify = new Spotify(keys.spotify);
 
-var artist = "",
-    movie = "",
-    song = "",
-    action = process.argv[2],
+var action = process.argv[2],
     query = process.argv.slice(3).join(" ");
-
-
+    divider =
+"\n------------------------------------------------------------\n\n";
 
 switch (action) {
   case "concert-this":
@@ -34,55 +31,58 @@ switch (action) {
 
 }
 
-
-function concert(query) {
-  
-  
+function concert(query) {  
 
 request("https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp", function(err, response, data){  
-  if(data === []){
+  if(!JSON.parse(data)[0]){
     console.log("Sorry, we couldn't find that artist.")
   } else{
-    // console.log(JSON.parse(data))
-  console.log(artist + " is going to be playing in " + JSON.parse(data)[0].venue.name);
-  console.log("This venue is located in " + JSON.parse(data)[0].venue.city + ", " +JSON.parse(data)[0].venue.region);
-  var unformattedTime =  JSON.parse(data)[0].datetime;
-  var time = moment(unformattedTime).format("MMMM Do YYYY, h:mm:ss a");
-  console.log("The concert will start on " + time);
+    
+    let unformattedTime =  JSON.parse(data)[0].datetime,
+        time = moment(unformattedTime).format("MMMM Do YYYY, h:mm:ss a"),
+        concertInfo = query + " is going to be playing in " + JSON.parse(data)[0].venue.name + "\n" + "This venue is located in " + JSON.parse(data)[0].venue.city + ", " +JSON.parse(data)[0].venue.region + "\n" + "The concert will start on " + time
+
+        fs.appendFile("log.txt", "Concert \n \n" + concertInfo + divider, function(err) {
+          if (err) {
+            console.log(err);
+          }      
+          console.log(concertInfo);
+        });
   }
 })
 }
 
 
 function movies(query){
-  movie = process.argv.slice(3).join(" ");
+
   console.log(query)
   request("http://www.omdbapi.com/?apikey=418b7fe2&t=" + query, function(err, response, data) {
 
-    if (query != "") {     
+    if (query != "") { 
       
-      console.log("The movie's title is: " + JSON.parse(data).Title);
-      console.log("The movie was realeased in the year: " + JSON.parse(data).Year);
-      console.log("The movie's rating is: " + JSON.parse(data).imdbRating);
-      console.log("The movie's Rotten Tomato Score is: " + JSON.parse(data).Ratings[1].Value);
-      console.log("The movie was shot in: " + JSON.parse(data).Country);
-      console.log("The movie's language is: " + JSON.parse(data).Language);
-      console.log("The movie's plot is: " + JSON.parse(data).Plot);
-      console.log("The actors in this movie are: " + JSON.parse(data).Actors);
+      let movieInfo =  "The movie's title is: " + JSON.parse(data).Title + "\n" + "The movie was realeased in the year: " + "\n" + JSON.parse(data).Year + "\n" + "The movie's rating is: " + "\n" + JSON.parse(data).imdbRating + "\n" + "The movie's Rotten Tomato Score is: " + "\n" + JSON.parse(data).Ratings[1].Value + "\n" + "The movie was shot in: " + "\n" + JSON.parse(data).Country + "\n" + "The movie's language is: " + "\n" + JSON.parse(data).Language + "\n" + "The movie's plot is: " + "\n" + JSON.parse(data).Plot + "\n" + "The actors in this movie are: " + "\n" + JSON.parse(data).Actors
+
+      fs.appendFile("log.txt", "Movie \n \n" + movieInfo + divider, function(err) {
+        if (err) {
+          console.log(err);
+        }      
+        console.log(movieInfo);
+      });
+
     } else {
       request("http://www.omdbapi.com/?apikey=418b7fe2&t=Mr+Nobody", function (err, response, data) {
       
-    if (!err && response.statusCode === 200) {     
-      
-      console.log("The movie's title is: " + JSON.parse(data).Title);
-      console.log("The movie was realeased in the year: " + JSON.parse(data).Year);
-      console.log("The movie's rating is: " + JSON.parse(data).imdbRating);
-      console.log("The movie's Rotten Tomato Score is: " + JSON.parse(data).Ratings[1].Value);
-      console.log("The movie was shot in: " + JSON.parse(data).Country);
-      console.log("The movie's language is: " + JSON.parse(data).Language);
-      console.log("The movie's plot is: " + JSON.parse(data).Plot);
-      console.log("The actors in this movie are: " + JSON.parse(data).Actors);
-      console.log("It's on Netflix!");
+    if (!err && response.statusCode === 200) {
+
+      let movieInfo =  "The movie's title is: " + JSON.parse(data).Title + "\n" + "The movie was realeased in the year: " + "\n" + JSON.parse(data).Year + "\n" + "The movie's rating is: " + "\n" + JSON.parse(data).imdbRating + "\n" + "The movie's Rotten Tomato Score is: " + "\n" + JSON.parse(data).Ratings[1].Value + "\n" + "The movie was shot in: " + "\n" + JSON.parse(data).Country + "\n" + "The movie's language is: " + "\n" + JSON.parse(data).Language + "\n" + "The movie's plot is: " + "\n" + JSON.parse(data).Plot + "\n" + "The actors in this movie are: " + "\n" + JSON.parse(data).Actors
+
+      fs.appendFile("log.txt", "Movie \n \n" + movieInfo + divider, function(err) {
+        if (err) {
+          console.log(err);
+        }      
+        console.log(movieInfo);
+      });
+     
     }
   });
 }
@@ -90,15 +90,21 @@ function movies(query){
 }
 
 function spotifySearch (query) {
+
   if (!query) query = "Por mi reggae muero";
 
   spotify
   .search({ type: 'track', query: query })
   .then(function(response) {
-    console.log(response.tracks.items[0].artists[0].name);
-    console.log(response.tracks.items[0].name);
-    console.log(response.tracks.items[0].external_urls.spotify);
-    console.log(response.tracks.items[0].album.external_urls.spotify);
+    let songInfo = "The artists name is: " + response.tracks.items[0].artists[0].name + "\n" + "The songs name is: " + response.tracks.items[0].name + "\n" + "The URL to the song is: " + response.tracks.items[0].external_urls.spotify + "\n" + "The URL to the album is: " + response.tracks.items[0].album.external_urls.spotify
+
+    fs.appendFile("log.txt", "Song \n \n" + songInfo + divider, function(err) {
+      if (err) {
+        console.log(err);
+      }      
+      console.log(songInfo);
+    });
+
   })
   .catch(function(err) {
     console.log(err);
