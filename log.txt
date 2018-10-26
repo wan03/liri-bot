@@ -32,3 +32,102 @@ The URL to the song is: https://open.spotify.com/track/7yCPwWs66K8Ba5lFuU2bcx
 The URL to the album is: https://open.spotify.com/album/5qt11cWjSs5Gbqj2Wyfu38
 ------------------------------------------------------------
 
+Song 
+ 
+The artists name is: Cosculluela
+The songs name is: Yo No Se Bailar
+The URL to the song is: https://open.spotify.com/track/0yP7rrcH9iRjwaDz4Ut0UY
+The URL to the album is: https://open.spotify.com/album/2xewTv2y5yrMwA36X2Vxzs
+------------------------------------------------------------
+
+Concert 
+ 
+Marc Anthony is going to be playing in Agganis Arena
+This venue is located in Boston, MA
+The concert will start on October 25th 2018, 8:00:00 pm
+------------------------------------------------------------
+
+Movie 
+ 
+The movie's title is: The Matrix
+The movie was realeased in the year: 
+1999
+The movie's rating is: 
+8.7
+The movie's Rotten Tomato Score is: 
+87%
+The movie was shot in: 
+USA
+The movie's language is: 
+English
+The movie's plot is: 
+A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
+The actors in this movie are: 
+Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
+------------------------------------------------------------
+
+Concert 
+ 
+Marc Anthony is going to be playing in Agganis Arena
+This venue is located in Boston, MA
+The concert will start on October 25th 2018, 8:00:00 pm
+------------------------------------------------------------
+
+Song 
+ 
+The artists name is: Cosculluela
+The songs name is: Yo No Se Bailar
+The URL to the song is: https://open.spotify.com/track/0yP7rrcH9iRjwaDz4Ut0UY
+The URL to the album is: https://open.spotify.com/album/2xewTv2y5yrMwA36X2Vxzs
+------------------------------------------------------------
+
+Song 
+ 
+The artists name is: Backstreet Boys
+The songs name is: I Want It That Way
+The URL to the song is: https://open.spotify.com/track/6e40mgJiCid5HRAGrbpGA6
+The URL to the album is: https://open.spotify.com/album/1NslKOZobWxINFaFkLol3r
+------------------------------------------------------------
+
+Song 
+ 
+The artists name is: Backstreet Boys
+The songs name is: I Want It That Way
+The URL to the song is: https://open.spotify.com/track/6e40mgJiCid5HRAGrbpGA6
+The URL to the album is: https://open.spotify.com/album/1NslKOZobWxINFaFkLol3r
+------------------------------------------------------------
+
+Song 
+ 
+The artists name is: Cosculluela
+The songs name is: Yo No Se Bailar
+The URL to the song is: https://open.spotify.com/track/0yP7rrcH9iRjwaDz4Ut0UY
+The URL to the album is: https://open.spotify.com/album/2xewTv2y5yrMwA36X2Vxzs
+------------------------------------------------------------
+
+Concert 
+ 
+Marc Anthony is going to be playing in Agganis Arena
+This venue is located in Boston, MA
+The concert will start on October 25th 2018, 8:00:00 pm
+------------------------------------------------------------
+
+Movie 
+ 
+The movie's title is: The Matrix
+The movie was realeased in the year: 
+1999
+The movie's rating is: 
+8.7
+The movie's Rotten Tomato Score is: 
+87%
+The movie was shot in: 
+USA
+The movie's language is: 
+English
+The movie's plot is: 
+A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
+The actors in this movie are: 
+Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving
+------------------------------------------------------------
+
